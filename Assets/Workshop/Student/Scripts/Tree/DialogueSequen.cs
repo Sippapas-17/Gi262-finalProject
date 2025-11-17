@@ -1,96 +1,137 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Solution; // เพื่อให้รู้จัก OOPPlayer, Inventory
+
+// NOTE: คลาส DialogueNode และ DialogueTree ถูกประกาศในไฟล์นี้ 
+namespace Solution
+{
+    // *** 1. คลาส DialogueNode ***
+    public class DialogueNode
+    {
+        public string text;
+        public Dictionary<string, DialogueNode> nexts = new Dictionary<string, DialogueNode>();
+
+        public DialogueNode(string text)
+        {
+            this.text = text;
+            nexts = new Dictionary<string, DialogueNode>();
+        }
+
+        public void AddNext(DialogueNode next, string choiceText)
+        {
+            nexts.Add(choiceText, next);
+        }
+    }
+
+    // *** 2. คลาส DialogueTree ***
+    public class DialogueTree
+    {
+        public DialogueNode root;
+
+        public DialogueTree(DialogueNode root)
+        {
+            this.root = root;
+        }
+    }
 
 
+    // *** 3. คลาส DialogueSequen หลัก ***
     public class DialogueSequen : MonoBehaviour
     {
         public DialogueTree tree;
         public DialogueNode currentNode;
-        public DialogueUI dialogueUI; // ลาก DialogueUI Component มาใส่
+        public DialogueUI dialogueUI;
+
+        private Dictionary<string, DialogueNode> allNodes = new Dictionary<string, DialogueNode>();
 
         public void Start()
         {
-
             LoadConversations();
-
         }
 
         private void LoadConversations()
         {
-            // NPC: Ah, traveler! What brings you to this old place?
-            //     |
-            //     +-- [1] Can you give me a quest?
-            //     |       |
-            //     |       +-- NPC: I have a task for you. There’s a beast in the woods. Can you take care of it?
-            //     |               |
-            //     |               +-- [1] I’m ready for anything!
-            //     |               |       |
-            //     |               |       +-- NPC: You're not ready for this yet. Come back when you're stronger.
-            //     |               |
-            //     |               +-- [2] Maybe later.
-            //     |                       |
-            //     |                       +-- NPC: Safe travels, adventurer.
-            //     |
-            //     +-- [2] Where is the village?
-            //     |       |
-            //     |       +-- NPC: Follow the road south, and you’ll reach the village.
-            //     |
-            //     +-- [3] How do I get to the forest?
-            //     |       |
-            //     |       +-- NPC: Head west, into the forest. But beware, it's dangerous.
-            //     |
-            //     +-- [4] Goodbye.
-            //             |
-            //             +-- NPC: Safe travels, adventurer.
+            // --- 1. Node สำหรับ NPC ---
+            DialogueNode greeting = new DialogueNode("Ah, traveler! I know you seek the way out. Find the Master Key.");
+            allNodes.Add("greeting", greeting);
 
-            // Create the dialogue nodes
-            DialogueNode greeting = new DialogueNode("Ah, traveler! What brings you to this old place?");
-            DialogueNode askForQuest = new DialogueNode("I have a task for you. There’s a beast in the woods. Can you take care of it?");
-            DialogueNode questDenied = new DialogueNode("You're not ready for this yet. Come back when you're stronger.");
-            DialogueNode directionsVillage = new DialogueNode("Follow the road south, and you’ll reach the village.");
-            DialogueNode directionsForest = new DialogueNode("Head west, into the forest. But beware, it's dangerous.");
-            DialogueNode goodbye = new DialogueNode("Safe travels, adventurer.");
-            DialogueNode noIdea = new DialogueNode("I'm afraid I can't help you with that.");
+            DialogueNode clue1 = new DialogueNode("The first key part is hidden where 'Time stands still' but its eye is cold blue.");
+            allNodes.Add("clue1", clue1);
 
-            // Build the tree, adding custom responses
-            greeting.AddNext(askForQuest, "Can you give me a quest?");
-            greeting.AddNext(directionsVillage, "Where is the village?");
-            greeting.AddNext(directionsForest, "How do I get to the forest?");
-            greeting.AddNext(goodbye, "Goodbye.");
+            DialogueNode clue2 = new DialogueNode("The final part of the key is guarded by the 'Three-headed beast'. A Firestorm might weaken its bond.");
+            allNodes.Add("clue2", clue2);
 
-            askForQuest.AddNext(questDenied, "I’m ready for anything!");
-            askForQuest.AddNext(goodbye, "Maybe later.");
+            DialogueNode farewell = new DialogueNode("You have proven yourself. The Master Key will open the Final Gate.");
+            allNodes.Add("farewell", farewell);
 
-            // Set up the root of the dialogue tree
+            // ******************************************************
+            // ******* 2. เพิ่ม Node สำหรับวัตถุโต้ตอบ (Interactable Objects) *******
+            // ******************************************************
+
+            // หีบ (Chest)
+            DialogueNode chestNode = new DialogueNode("Perhaps the key is in what treasure hunters seek most?");
+            allNodes.Add("Chest", chestNode); // <--- Key ต้องตรงกับที่ InteractableObject เรียกใช้
+
+            // กล่อง (Box)
+            DialogueNode boxNode = new DialogueNode("In many games, people love to break these.");
+            allNodes.Add("Box", boxNode);
+
+            // ถังหมัก (Fermenter)
+            DialogueNode fermenterNode = new DialogueNode("This is often used for fermenting or storing goods.");
+            allNodes.Add("Fermenter", fermenterNode);
+
+            // โลงศพ/หลุมศพ (Coffin)
+            DialogueNode coffinNode = new DialogueNode("A final resting place.");
+            allNodes.Add("Coffin", coffinNode);
+
+            // รูปปั้น (Statue)
+            DialogueNode statueNode = new DialogueNode("People build these to remember someone or something.");
+            allNodes.Add("Statue", statueNode);
+
+            // ******************************************************
+
+            // กำหนด Root Node (สำหรับ NPC)
             tree = new DialogueTree(greeting);
         }
 
-    // **เมธอดใหม่สำหรับรับการเลือกจากปุ่ม UI**
-    public void SelectChoice(int index)
-    {
-        var choiceTextKeys = new List<string>(currentNode.nexts.Keys);
-
-        if (index >= 0 && index < choiceTextKeys.Count)
+        public DialogueNode GetNode(string key)
         {
-            string choiceKey = choiceTextKeys[index];
-
-            // 1. เลื่อนไปยัง Dialogue Node ถัดไป
-            currentNode = currentNode.nexts[choiceKey];
-
-            // 2. ตรวจสอบว่ามีตัวเลือกถัดไปหรือไม่ (จบการสนทนา)
-            if (currentNode.nexts.Count > 0)
+            if (allNodes.ContainsKey(key))
             {
-                dialogueUI.ShowDialogue(currentNode); // แสดง Node ถัดไป
+                return allNodes[key];
             }
-            else
+            Debug.LogError($"Dialogue Node '{key}' not found! Returning root node.");
+            return tree.root;
+        }
+
+        // เมธอดสำหรับจัดการเมื่อผู้เล่น "เลือก" ตัวเลือก
+        public void SelectChoice(int index)
+        {
+            // ตรวจสอบว่ามีตัวเลือกให้เลือกหรือไม่
+            if (currentNode == null || currentNode.nexts.Count == 0 || index >= currentNode.nexts.Count)
             {
-                // ถ้าไม่มีตัวเลือกถัดไป ถือว่าจบบทสนทนา
-                dialogueUI.ShowDialogue(currentNode);   // แสดงข้อความสุดท้าย
-                dialogueUI.ShowCloseButtonDialog();    // อาจเพิ่ม Delay และเรียก dialogueUI.HideDialogue() ที่นี่
-                                                      // หรือทำให้ปุ่ม "ปิด" แสดงขึ้นมา
+                // ถ้าไม่มีตัวเลือก หรือ index ผิดพลาด ให้ปิด Dialogue
+                dialogueUI.HideDialogue();
+                return;
+            }
+
+            // 1. หา Key ของตัวเลือกที่ผู้เล่นกด
+            var choiceKeys = new List<string>(currentNode.nexts.Keys);
+            string selectedKey = choiceKeys[index];
+
+            // 2. ไปยัง Node ถัดไป
+            currentNode = currentNode.nexts[selectedKey];
+
+            // 3. แสดง Node ถัดไป
+            dialogueUI.ShowDialogue(currentNode);
+
+            // 4. ตรวจสอบว่า Node ใหม่นี้มีตัวเลือกต่อไปหรือไม่
+            if (currentNode.nexts.Count == 0)
+            {
+                // ถ้า Node ใหม่นี้ไม่มีตัวเลือก (เป็นจุดจบ) ให้แสดงปุ่มปิด
+                dialogueUI.ShowCloseButtonDialog();
             }
         }
     }
 }
-

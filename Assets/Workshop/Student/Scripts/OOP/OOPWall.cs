@@ -1,36 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Solution
 {
-
     public class OOPWall : Identity
     {
-        public int Damage;
         public bool IsIceWall;
 
-        private void Start()
+        // 1. เปลี่ยนจาก private void Start()
+        // เป็น public override void SetUP()
+        public override void SetUP()
         {
+            // (เรียก base.SetUP() ด้วยก็ดีครับ)
+            base.SetUP();
+
             IsIceWall = Random.Range(0, 100) < 20 ? true : false;
             if (IsIceWall)
             {
-                GetComponent<SpriteRenderer>().color = Color.blue;
+                SpriteRenderer sr = GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    sr.color = Color.blue;
+                }
             }
         }
+
         public override bool Hit()
         {
-            if (IsIceWall)
-            {
-                mapGenerator.player.TakeDamage(Damage, IsIceWall);
-            }
-            else
-            {
-                mapGenerator.player.TakeDamage(Damage);
-            }
             mapGenerator.mapdata[positionX, positionY] = null;
             Destroy(gameObject);
+
+            if (IsIceWall)
+            {
+                if (mapGenerator.player != null && mapGenerator.player.inventory != null)
+                {
+                    mapGenerator.player.inventory.AddItem("KeyPart1", 1);
+                    Debug.Log("The Ice Wall shattered, revealing a small part of the key!");
+                }
+            }
+
             return false;
         }
     }

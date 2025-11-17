@@ -6,20 +6,24 @@ public class NPCSkill : Identity
     public GameObject skillUi;
     public bool canTalk = true;
 
-    public override bool Hit()
+    public override bool Interact(OOPPlayer player)
     {
-        // ตรวจสอบว่าผู้เล่นมีไอเท็มที่ต้องการหรือไม่
         if (canTalk)
         {
-            Debug.Log("NPCSkill");
-
+            Debug.Log("NPCSkill: Opening Skill Tree.");
             skillUi.SetActive(true);
-            return false;
+            return true;
         }
         else
         {
-            Debug.Log("I not neet to talk to you");
+            Debug.Log("I not need to talk to you");
             return false;
         }
+    }
+
+    // ยังคงมีเมธอด Hit() เผื่อ NPC ถูกวางบน Map
+    public override bool Hit()
+    {
+        return false;
     }
 }

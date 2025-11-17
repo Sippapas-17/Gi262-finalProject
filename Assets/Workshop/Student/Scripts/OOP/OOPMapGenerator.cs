@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Solution
 {
-
     public class OOPMapGenerator : MonoBehaviour
     {
         [Header("Set MapGenerator")]
@@ -14,92 +13,90 @@ namespace Solution
         [Header("Set Player")]
         public OOPPlayer player;
         public Vector2Int playerStartPos;
+
         [Header("Set NPC")]
         public NPC Npc;
         public NPCSkill NpcSkill;
+
         [Header("Set Exit")]
         public OOPExit Exit;
+
         [Header("Set Wall")]
         public Identity Wall;
 
         [Header("Set Prefab")]
         public GameObject[] floorsPrefab;
         public GameObject[] wallsPrefab;
-        public GameObject[] demonWallsPrefab;
-        public GameObject[] itemsPrefab;
+        public GameObject[] demonWallsPrefab; // กำแพงที่ทำลายได้
+
+        // Prefab สำหรับวัตถุโต้ตอบ 5 ชนิด
+        public GameObject[] statuesPrefab;
+        public GameObject[] boxesPrefab;
+        public GameObject[] fermentersPrefab;
+        public GameObject[] chestsPrefab;
+        public GameObject[] coffinsPrefab;
+
         public GameObject[] collectItemsPrefab;
-        public GameObject[] EnemyPrefab;
         public GameObject[] SkillPrefab;
 
         [Header("Set Transform")]
         public Transform floorParent;
         public Transform wallParent;
         public Transform itemParent;
-        public Transform enemyParent;
 
         [Header("Set object Count")]
         public int obsatcleCount;
-        public int itemPotionCount;
         public int colloctItemCount;
-        public int EnemyCount;
         public int SkillCount;
 
         public Identity[,] mapdata;
-        [Header("Enemy on Map")]
-        public List<OOPEnemy> EnemysOnMap = new List<OOPEnemy>();
 
-        // block types ...
-        [HideInInspector]
-        public string empty = "";
-        [HideInInspector]
-        public string demonWall = "demonWall";
-        [HideInInspector]
-        public string potion = "potion";
-        [HideInInspector]
-        public string bonuesPotion = "bonuesPotion";
-        [HideInInspector]
-        public string exit = "exit";
-        [HideInInspector]
-        public string playerOnMap = "player";
-        [HideInInspector]
-        public string collectItem = "collectItem";
-        [HideInInspector]
-        public string enemy = "enemy";
-        [HideInInspector]
-        public string npc = "Npc";
+        // block types
+        [HideInInspector] public string empty = "";
+        [HideInInspector] public string demonWall = "demonWall";
+        [HideInInspector] public string exit = "exit";
+        [HideInInspector] public string playerOnMap = "player";
+        [HideInInspector] public string collectItem = "collectItem";
+        [HideInInspector] public string npc = "Npc";
 
-        // Start is called before the first frame update
         private void Awake()
         {
             CreateMap();
         }
+
         void Start()
         {
             StartCoroutine(SetUPMap());
         }
-        IEnumerator SetUPMap() {
+
+        IEnumerator SetUPMap()
+        {
             SetUpPlayer();
             SetUpExit();
             SetUpNpc();
+
             PlaceItemsOnMap(obsatcleCount, demonWallsPrefab, wallParent, demonWall);
-            //PlaceItemsOnMap(itemPotionCount, itemsPrefab, itemParent, potion);
+            PlaceItemsOnMap(1, statuesPrefab, itemParent, "Statue");
+            PlaceItemsOnMap(1, boxesPrefab, itemParent, "Box");
+            PlaceItemsOnMap(1, fermentersPrefab, itemParent, "Fermenter");
+            PlaceItemsOnMap(1, chestsPrefab, itemParent, "Chest");
+            PlaceItemsOnMap(1, coffinsPrefab, itemParent, "Coffin");
             PlaceItemsOnMap(colloctItemCount, collectItemsPrefab, itemParent, collectItem);
             PlaceItemsOnMap(SkillCount, SkillPrefab, itemParent, collectItem);
-            //PlaceItemsOnMap(EnemyCount, EnemyPrefab, enemyParent, enemy);
-            yield return new WaitForSeconds(0.5f);
-            RandomDamageToListEnemies();
+
+            yield return null;
         }
 
         private void PlaceItemsOnMap(int count, GameObject[] prefab, Transform parent, string itemType, System.Action onComplete = null)
         {
             int placedCount = 0;
-            int preventInfiniteLoop = 1000; // Increased loop prevention for safety
+            int preventInfiniteLoop = 1000;
 
             while (placedCount < count)
             {
                 if (--preventInfiniteLoop < 0)
                 {
-                    Debug.LogWarning("Could not place all items. Map may be too full.");
+                    Debug.LogWarning($"Could not place all items ({itemType}). Map may be too full.");
                     break;
                 }
 
@@ -114,26 +111,37 @@ namespace Solution
             }
             onComplete?.Invoke();
         }
+
         private void SetUpNpc()
         {
-            mapdata[Npc.positionX, Npc.positionY] = Npc;
-            mapdata[NpcSkill.positionX, NpcSkill.positionY] = NpcSkill;
-            Npc.transform.position = new Vector3(Npc.positionX, Npc.positionY, 0);
-            NpcSkill.transform.position = new Vector3(NpcSkill.positionX, NpcSkill.positionY, 0);
-            Npc.mapGenerator = this;
-            NpcSkill.mapGenerator = this;
+            if (Npc != null)
+            {
+                Npc.mapGenerator = this;
+                mapdata[Npc.positionX, Npc.positionY] = Npc;
+                Npc.transform.position = new Vector3(Npc.positionX, Npc.positionY, 0);
+            }
+            if (NpcSkill != null)
+            {
+                NpcSkill.mapGenerator = this;
+                mapdata[NpcSkill.positionX, NpcSkill.positionY] = NpcSkill;
+                NpcSkill.transform.position = new Vector3(NpcSkill.positionX, NpcSkill.positionY, 0);
+            }
         }
+
         private void SetUpExit()
         {
+            if (Exit == null) return;
             mapdata[X - 1, Y - 1] = Exit;
             Exit.transform.position = new Vector3(X - 1, Y - 1, 0);
         }
 
         private void SetUpPlayer()
         {
+            if (player == null) return;
             player.mapGenerator = this;
             player.positionX = playerStartPos.x;
             player.positionY = playerStartPos.y;
+            // ผู้เล่นอยู่ที่ Z = -0.1f (หน้าสุด)
             player.transform.position = new Vector3(playerStartPos.x, playerStartPos.y, -0.1f);
             mapdata[playerStartPos.x, playerStartPos.y] = player;
         }
@@ -147,14 +155,18 @@ namespace Solution
                 {
                     if (x == -1 || x == X || y == -1 || y == Y)
                     {
+                        if (wallsPrefab.Length == 0) continue;
                         int r = Random.Range(0, wallsPrefab.Length);
+                        // กำแพงขอบอยู่ที่ Z = 0
                         GameObject obj = Instantiate(wallsPrefab[r], new Vector3(x, y, 0), Quaternion.identity);
                         obj.transform.parent = wallParent;
                         obj.name = "Wall_" + x + ", " + y;
                     }
                     else
                     {
+                        if (floorsPrefab.Length == 0) continue;
                         int r = Random.Range(0, floorsPrefab.Length);
+                        // พื้นอยู่ที่ Z = 1 (หลังสุด)
                         GameObject obj = Instantiate(floorsPrefab[r], new Vector3(x, y, 1), Quaternion.identity);
                         obj.transform.parent = floorParent;
                         obj.name = "floor_" + x + ", " + y;
@@ -164,68 +176,58 @@ namespace Solution
             }
         }
 
-        public Identity GetMapData(float x, float y)
+        public void SetUpItem(int x, int y, GameObject[] _itemsPrefab, Transform parrent, string _name)
         {
-            if (x >= X || x < 0 || y >= Y || y < 0) {
-                return Wall;
-            }
-
-            return mapdata[(int)x, (int)y];
-        }
-
-        public void SetUpItem(int x, int y,GameObject[] _itemsPrefab,Transform parrent,string _name)
-        {
+            if (_itemsPrefab.Length == 0) return;
             int r = Random.Range(0, _itemsPrefab.Length);
-            GameObject obj = Instantiate(_itemsPrefab[r], new Vector3(x, y, 0), Quaternion.identity);
+
+            GameObject obj = Instantiate(_itemsPrefab[r], new Vector3(x, y, -0.05f), Quaternion.identity);
+
             obj.transform.parent = parrent;
-            mapdata[x, y] = obj.GetComponent<Identity>();
+
+            Identity identityComponent = obj.GetComponent<Identity>();
+            if (identityComponent == null)
+            {
+                Debug.LogError($"Prefab for {_name} at {x},{y} is missing the Identity component!");
+                Destroy(obj);
+                return;
+            }
+
+            mapdata[x, y] = identityComponent;
             mapdata[x, y].positionX = x;
             mapdata[x, y].positionY = y;
             mapdata[x, y].mapGenerator = this;
-            if (_name != collectItem) {
-                mapdata[x, y].Name = _name;
-            }
-            if (_name == enemy) {
-                EnemysOnMap.Add(obj.GetComponent<OOPEnemy>());
-            }
-            obj.name = $"Object_{mapdata[x, y].Name} {x}, {y}";
-        }
-        public void SetUpItem(int x, int y, GameObject _itemsPrefab, Transform parrent, string _name)
-        {
-            _itemsPrefab.transform.parent = parrent;
-            mapdata[x, y] = _itemsPrefab.GetComponent<Identity>();
-            mapdata[x, y].positionX = x;
-            mapdata[x, y].positionY = y;
-            mapdata[x, y].mapGenerator = this;
+
             if (_name != collectItem)
             {
+                mapdata[x, y].Name = _itemsPrefab[r].name;
+            }
+            else
+            {
                 mapdata[x, y].Name = _name;
             }
-            if (_name == enemy)
-            {
-                EnemysOnMap.Add(_itemsPrefab.GetComponent<OOPEnemy>());
-            }
-            _itemsPrefab.name = $"Object_{mapdata[x, y].Name} {x}, {y}";
+
+            obj.name = $"Object_{mapdata[x, y].Name} {x}, {y}";
         }
 
-        public OOPEnemy[] GetEnemies()
+        // เมธอดที่ Character.cs เรียกใช้ (ต้องมี)
+        public bool HasPlacement(int x, int y)
         {
-            return EnemysOnMap.ToArray();
+            if (x >= 0 && x < X && y >= 0 && y < Y)
+            {
+                return true;
+            }
+            return false;
         }
-        public void MoveEnemies()
+
+        // เมธอดที่ Character.cs เรียกใช้ (ต้องมี)
+        public Identity GetMapData(int x, int y)
         {
-            foreach (var enemy in EnemysOnMap)
+            if (x >= 0 && x < X && y >= 0 && y < Y)
             {
-                enemy.RandomMove();
+                return mapdata[x, y];
             }
-        }
-        public void RandomDamageToListEnemies() {
-            Debug.Log($"Damage to {EnemysOnMap.Count} EnemysOnMap");
-            foreach (var enemy in EnemysOnMap)
-            {
-                int damage = Random.Range(1, 15);
-                enemy.TakeDamage(damage);
-            }
+            return Wall;
         }
     }
 }

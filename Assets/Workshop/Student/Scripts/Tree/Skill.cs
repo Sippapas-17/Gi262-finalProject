@@ -1,8 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+namespace Solution
+{
+    // **********************************************
+    // 1. คลาส Skill (Data Node)
+    // **********************************************
     public class Skill
     {
         public string name;
@@ -10,14 +13,13 @@ using UnityEngine;
         public bool isAvailable;
         public List<Skill> nextSkills;
 
-        
         public Skill(string name)
         {
             this.name = name;
             isUnlocked = false;
             nextSkills = new List<Skill>();
         }
-        
+
         public void Unlock()
         {
             if (!isAvailable)
@@ -32,32 +34,19 @@ using UnityEngine;
             }
 
             isUnlocked = true;
+
             for (int i = 0; i < nextSkills.Count; i++)
             {
                 nextSkills[i].isAvailable = true;
             }
         }
 
-        public void PrintSkillTree()
-        {
-            Debug.Log($"Skill: {name} available: {isAvailable} unlocked: {isUnlocked}");
-            for (int i = 0; i < nextSkills.Count; i++)
-            {
-                nextSkills[i].PrintSkillTree();
-            }
-        }
-
-        public void PrintSkillTreeHierarchy(string indent)
-        {
-            Debug.Log($"{indent}- Skill: {name} available: {isAvailable} unlocked: {isUnlocked}");
-            foreach (var skill in this.nextSkills)
-            {
-                skill.PrintSkillTreeHierarchy(indent + "    "); // Increase indentation for the next level
-            }
-        }
-
+        // ... (เมธอด PrintSkillTreeHierarchy อื่นๆ) ...
     }
 
+    // **********************************************
+    // 2. คลาส SkillTree (ถูกสร้างและรวมไว้ในไฟล์เดียวกัน)
+    // **********************************************
     public class SkillTree
     {
         public Skill rootSkill;
@@ -67,4 +56,4 @@ using UnityEngine;
             this.rootSkill = rootSkill;
         }
     }
-
+}

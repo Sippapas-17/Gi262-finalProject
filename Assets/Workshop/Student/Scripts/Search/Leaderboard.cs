@@ -3,17 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Solution; // <--- 1. เพิ่ม using Solution
 
-namespace Searching
+namespace Solution // <--- 2. เปลี่ยนจาก Searching เป็น Solution
 {
     public class Leaderboard : MonoBehaviour
     {
+        // 3. ตอนนี้ List จะรู้จัก PlayerScore ที่อยู่ใน Solution
         private List<PlayerScore> scores = new List<PlayerScore>();
         public GameObject UIScore;
         public Transform UiParent;
+
         void Awake()
         {
-            // Add 20 initial scores in unsorted order
+            // (Add 20 initial scores in unsorted order)
             RecordScore(new PlayerScore("Alice", 100));
             RecordScore(new PlayerScore("Bob", 50));
             RecordScore(new PlayerScore("Charlie", 75));
@@ -29,13 +32,11 @@ namespace Searching
             RecordScore(new PlayerScore("Kevin", 275));
             RecordScore(new PlayerScore("Nina", 350));
             RecordScore(new PlayerScore("Mona", 325));
-            
         }
 
         public void RecordScore(PlayerScore score)
         {
             // [1] sequential search if the player is already in the list
-
             int index = -1;
             for (int i = 0; i < scores.Count; i++)
             {
@@ -50,8 +51,9 @@ namespace Searching
             {
                 scores.RemoveAt(index);
             }
-            // [2] find index to insert that make the scores list sorted with binary search
-            index = -1; // reset index
+
+            // [2] find index to insert (Binary Search logic)
+            index = -1;
             int left = 0;
             int right = scores.Count - 1;
             while (left <= right)
@@ -62,13 +64,14 @@ namespace Searching
                     index = mid;
                     break;
                 }
-                else if (scores[mid].score < score.score)
+                // (ปรับ Logic การค้นหาเล็กน้อยเพื่อให้เรียงจากมากไปน้อย)
+                else if (scores[mid].score < score.score) // ถ้าคะแนนใหม่สูงกว่า
                 {
-                    left = mid + 1;
+                    right = mid - 1; // ไปทางซ้าย (index น้อย)
                 }
                 else
                 {
-                    right = mid - 1;
+                    left = mid + 1; // ไปทางขวา (index มาก)
                 }
             }
 
@@ -78,19 +81,19 @@ namespace Searching
                 index = left;
             }
             scores.Insert(index, score);
-
         }
 
         public void PrintScores()
         {
-            // join all score as string and print it
             string allScores = scores.Aggregate("", (acc, score) => acc + score.score.ToString() + ",");
             Debug.Log(allScores);
-            
         }
-        public void ShowleaderBoard() {
+
+        public void ShowleaderBoard()
+        {
             foreach (var score in scores)
             {
+                // 4. UIPlayerScore ก็ต้องอยู่ใน Solution namespace ด้วย
                 UIPlayerScore uIScore = Instantiate(UIScore, UiParent).GetComponent<UIPlayerScore>();
                 uIScore.SetUpTextScore(score);
             }

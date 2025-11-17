@@ -1,4 +1,6 @@
-namespace Searching
+using Solution;
+
+namespace Solution // <-- CHANGED: ย้ายมาที่ Solution namespace
 {
     public class PlayerScore
     {

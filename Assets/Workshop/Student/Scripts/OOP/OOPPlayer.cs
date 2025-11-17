@@ -3,110 +3,81 @@ using UnityEngine;
 
 namespace Solution
 {
-
     public class OOPPlayer : Character
     {
         public Inventory inventory;
         public ActionHistoryManager actionHistoryManager;
 
-        public bool isAutoMoving = false; // Flag to control auto-movement
+        public bool isAutoMoving = false;
 
         public override void SetUP()
         {
             base.SetUP();
             PrintInfo();
-            GetRemainEnergy();
-            inventory = GetComponent<Inventory>();
-            // Initialize the action history manager and save the starting position
 
+            if (inventory == null) inventory = GetComponent<Inventory>();
+            if (actionHistoryManager == null) actionHistoryManager = GetComponent<ActionHistoryManager>();
         }
 
+        // เมธอด Update() สำหรับจัดการ Input
         public void Update()
-        {           
-
-            // Manual input is only processed if not in auto-move mode
+        {
             if (!isAutoMoving)
             {
-                if (Input.GetKeyDown(KeyCode.W))
-                {
-                    Move(Vector2.up);
-                }
-                if (Input.GetKeyDown(KeyCode.S))
-                {
-                    Move(Vector2.down);
-                }
-                if (Input.GetKeyDown(KeyCode.A))
-                {
-                    Move(Vector2.left);
-                }
-                if (Input.GetKeyDown(KeyCode.D))
-                {
-                    Move(Vector2.right);
-                }
+                // Input การเคลื่อนที่: เรียก Move(Vector2 direction) ของคลาสแม่
+                if (Input.GetKeyDown(KeyCode.W)) { Move(Vector2.up); }
+                if (Input.GetKeyDown(KeyCode.S)) { Move(Vector2.down); }
+                if (Input.GetKeyDown(KeyCode.A)) { Move(Vector2.left); }
+                if (Input.GetKeyDown(KeyCode.D)) { Move(Vector2.right); }
+
+                // Input สำหรับ Interact (E)
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    UseFireStorm();
+                    TryInteract();
                 }
-                // Input for Undo (U key)
-                if (Input.GetKeyDown(KeyCode.Z))
-                {
-                    actionHistoryManager.UndoLastMove(this);
-                }
-                if (Input.GetKeyDown(KeyCode.X))
-                {
-                    actionHistoryManager.RedoLastMove(this);
-                }
-                // Input for starting an example auto-move sequence (Q key)
-                if (Input.GetKeyDown(KeyCode.Q) && !isAutoMoving)
-                {
-                    actionHistoryManager.StartAutoMoveSequence(this);
-                }
+
             }
         }
-        public override void Move(Vector2 direction)
+
+        // <--- สำคัญ: Override Move() เพื่อบันทึก Undo ก่อนเคลื่อนที่
+        public override bool Move(Vector2 direction)
         {
-            base.Move(direction);
-            mapGenerator.MoveEnemies();
-            // Save the state AFTER the move
-      
+            // บันทึกตำแหน่งปัจจุบันก่อนเคลื่อนที่ (สำหรับ Undo)
+            if (actionHistoryManager != null)
+            {
+                actionHistoryManager.SaveStateForUndo(new Vector2(positionX, positionY));
+            }
+
+            // เรียกเมธอด Move() ของคลาสแม่ (Character)
+            return base.Move(direction);
         }
 
-        public void UseFireStorm()
+
+        // เมธอดสำหรับพยายามโต้ตอบกับวัตถุข้างหน้า
+        private void TryInteract()
         {
-            if (inventory.HasItem("FireStorm",1))
+            Vector2 direction = GetLastMoveDirection(); // <--- เรียกจาก Character.cs
+
+            int targetX = (int)(positionX + direction.x);
+            int targetY = (int)(positionY + direction.y);
+
+            if (mapGenerator == null)
             {
-                inventory.UseItem("FireStorm",1);
-                OOPEnemy[] enemies = UtilitySortEnemies.SortEnemiesByRemainningEnergy1(mapGenerator);
-                int count = 3;
-                if (count > enemies.Length)
-                {
-                    count = enemies.Length;
-                }
-                for (int i = 0; i < count; i++)
-                {
-                    enemies[i].TakeDamage(10);
-                }
+                Debug.LogError("Player Error: MapGenerator reference is missing!");
+                return;
+            }
+
+            Identity targetObject = mapGenerator.GetMapData(targetX, targetY);
+
+            if (targetObject != null)
+            {
+                // เรียกเมธอด Interact() ของวัตถุนั้น (NPC, หีบ, ฯลฯ)
+                targetObject.Interact(this);
             }
             else
             {
-                Debug.Log("No FireStorm in inventory");
+                Debug.Log("Player: Nothing to interact with.");
             }
         }
-        
-        public void Attack(OOPEnemy _enemy)
-        {
-            _enemy.TakeDamage(AttackPoint);
-            Debug.Log(_enemy.name + " is energy " + _enemy.energy);
-        }
-        protected override void CheckDead()
-        {
-            base.CheckDead();
-            if (energy <= 0)
-            {
-                Debug.Log("Player is Dead");
-            }
-        }
-
     }
-
 }

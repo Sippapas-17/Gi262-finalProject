@@ -1,12 +1,17 @@
-using Searching;
-using TMPro;
 using UnityEngine;
+using TMPro; // ต้องมีถ้าใช้ TextMeshPro
+using Solution; // <--- สำคัญ: เพื่อรู้จัก PlayerScore
 
-public class UIPlayerScore : MonoBehaviour
+namespace Solution // <--- ต้องใส่
 {
-    public TMP_Text Text;
+    public class UIPlayerScore : MonoBehaviour
+    {
+        public TMP_Text Text;
 
-    public void SetUpTextScore(PlayerScore txt) { 
-        Text.text = txt.playerName + " " + txt.score;
+        // เมธอดนี้ต้องเป็น public และรับ PlayerScore ที่อยู่ใน Solution namespace
+        public void SetUpTextScore(PlayerScore txt)
+        {
+            Text.text = txt.playerName + " " + txt.score;
+        }
     }
 }

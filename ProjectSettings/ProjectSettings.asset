@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 00000000000000000000000000000000
+  productGUID: 776e9360621fe4b4780ddad59221b627
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -947,7 +947,7 @@ PlayerSettings:
   cloudProjectId: 39e98ad9-ba44-4b9f-9395-dcc8717fd637
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
+  projectName: gi262 finalp
   organizationId: boomsippapas
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

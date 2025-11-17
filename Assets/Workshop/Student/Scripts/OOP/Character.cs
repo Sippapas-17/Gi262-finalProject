@@ -1,150 +1,87 @@
 using UnityEngine;
 
-
 namespace Solution
 {
+    // คลาสแม่ของสิ่งมีชีวิตที่เคลื่อนที่ได้
     public class Character : Identity
     {
-        [Header("Character")]
-        public int energy;
-        public int maxEnergy;
-        public int AttackPoint;
+        // เก็บทิศทางล่าสุดที่เคลื่อนที่
+        protected Vector2 lastMoveDirection = Vector2.down;
 
-        protected bool isAlive;
-        protected bool isFreeze;
-
-        public SpriteRenderer spriteRenderer; // ลาก SpriteRenderer ของตัวละครมาใส่ใน Inspector
-
-        // สีที่เราจะใช้ 3 ระดับ
-        [Header("color energy")]
-        public Color normalColor = Color.white;    // สีปกติ
-        public Color damagedColor1 = Color.yellow; // ได้รับความเสียหายระดับ 1 (เช่น HP เหลือ 66%)
-        public Color damagedColor2 = Color.red;    // ได้รับความเสียหายระดับ 2 (เช่น HP เหลือ 33%)
-
-        public override void SetUP()
+        // เมธอดสำหรับเคลื่อนที่
+        // (ต้องเป็น virtual เพื่อให้ OOPPlayer override ได้)
+        public virtual bool Move(Vector2 direction)
         {
-            isAlive = true;
-            isFreeze = false;
-            Debug.Log("SetUP " + Name);
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            energy = maxEnergy;
-
-            UpdateSpriteColorBasedOnHealth(); // เริ่มต้นด้วยการตั้งค่าสีตามพลังชีวิตปัจจุบัน
-        }
-        protected void GetRemainEnergy()
-        {
-            Debug.Log(name + " : " + energy);
-        }
-
-        public virtual void Move(Vector2 direction)
-        {
-            if (isFreeze == true)
+            if (mapGenerator == null)
             {
-                GetComponent<SpriteRenderer>().color = Color.white;
-                isFreeze = false;
-                return;
+                Debug.LogError("Character: MapGenerator reference is missing!");
+                return false;
             }
-            int toX = (int)(positionX + direction.x);
-            int toY = (int)(positionY + direction.y);
 
-            if (HasPlacement(toX, toY))
+            int toX = positionX + (int)direction.x;
+            int toY = positionY + (int)direction.y;
+
+            // <--- สำคัญ: อัปเดตทิศทางที่หันหน้าไป
+            if (direction != Vector2.zero)
             {
-                bool isCanWalkTo = mapGenerator.GetMapData(toX,toY).Hit();
-                if (isCanWalkTo)
+                lastMoveDirection = direction;
+            }
+
+            // 1. ตรวจสอบว่าอยู่ในขอบเขตแผนที่หรือไม่
+            if (!mapGenerator.HasPlacement(toX, toY))
+            {
+                Debug.Log($"Character: Cannot move to ({toX},{toY}), out of bounds.");
+                return false; // ชนขอบแผนที่
+            }
+
+            // 2. ตรวจสอบว่ามีวัตถุอื่นขวางหรือไม่
+            Identity targetObject = mapGenerator.GetMapData(toX, toY);
+            if (targetObject != null)
+            {
+                // ถ้ามีวัตถุ ให้เรียก Hit() ของวัตถุนั้น
+                if (!targetObject.Hit()) // ถ้า Hit() คืนค่า false (บล็อก)
                 {
-                    UpdatePosition(toX, toY);
+                    Debug.Log($"Character: Hit {targetObject.Name}, cannot move.");
+                    return false; // เดินชน
                 }
-
-            }
-            else
-            {
-                UpdatePosition(toX, toY);
-                TakeDamage(1);
             }
 
-        }
-
-        public virtual void UpdatePosition(int toX, int toY)
-        {
+            // 3. ถ้าเดินได้ (ไม่มีอะไรขวาง หรือ Hit() คืนค่า true)
+            // ล้างตำแหน่งเก่าใน mapdata
             mapGenerator.mapdata[positionX, positionY] = null;
+
+            // อัปเดตตำแหน่งใหม่
             positionX = toX;
             positionY = toY;
             transform.position = new Vector3(positionX, positionY, 0);
+
+            // อัปเดตตำแหน่งใหม่ใน mapdata
             mapGenerator.mapdata[positionX, positionY] = this;
+
+            Debug.Log($"Character: Moved to ({positionX},{positionY})");
+            return true;
         }
 
-        // hasPlacement คืนค่า true ถ้ามีการวางอะไรไว้บน map ที่ตำแหน่ง x,y
-        public bool HasPlacement(int x, int y)
+        // เมธอดสำหรับส่งคืนทิศทางล่าสุด (ให้ TryInteract() ใช้)
+        public Vector2 GetLastMoveDirection()
         {
-            var mapData = mapGenerator.GetMapData(x, y);
-            return mapData != null;
-        }
-      
-
-        public virtual void TakeDamage(int Damage)
-        {
-            energy -= Damage;
-            Debug.Log(name + " Current Energy : " + energy);
-            UpdateSpriteColorBasedOnHealth();
-            CheckDead();
-        }
-        public virtual void TakeDamage(int Damage, bool freeze)
-        {
-            energy -= Damage;
-            isFreeze = freeze;
-            GetComponent<SpriteRenderer>().color = Color.blue;
-            Debug.Log(name + " Current Energy : " + energy);
-            Debug.Log("you is Freeze");
-            UpdateSpriteColorBasedOnHealth();
-            CheckDead();
+            return lastMoveDirection;
         }
 
-
-        public void Heal(int healPoint)
+        // เมธอดสำหรับอัปเดตตำแหน่ง (ใช้ใน Undo/Redo)
+        public void UpdatePosition(int newX, int newY)
         {
-            // energy += healPoint;
-            // Debug.Log("Current Energy : " + energy);
-            // เราสามารถเรียกใช้ฟังก์ชัน Heal โดยกำหนดให้ Bonuse = false ได้ เพื่อที่จะให้ logic ในการ heal อยู่ที่ฟังก์ชัน Heal อันเดียวและไม่ต้องเขียนซ้ำ
-            Heal(healPoint, false);
-        }
+            if (mapGenerator == null) return;
 
-        public void Heal(int healPoint, bool Bonuse)
-        {
-            energy += healPoint * (Bonuse ? 2 : 1);
-            if (energy > maxEnergy)
-            {
-                energy = maxEnergy;
-            }
-            Debug.Log("Current Energy : " + energy);
-        }
-
-        protected virtual void CheckDead()
-        {
-            if (energy <= 0)
+            if (mapGenerator.mapdata[positionX, positionY] == this)
             {
                 mapGenerator.mapdata[positionX, positionY] = null;
-                Destroy(gameObject);
             }
-        }
-        private void UpdateSpriteColorBasedOnHealth()
-        {
-            if (spriteRenderer == null) return;
 
-            float healthPercentage = (float)energy / maxEnergy;
-
-            if (healthPercentage > 0.66f) // มากกว่า 66% (เช่น 67%-100%)
-            {
-                spriteRenderer.color = normalColor;
-            }
-            else if (healthPercentage > 0.33f) // มากกว่า 33% แต่ไม่เกิน 66% (เช่น 34%-66%)
-            {
-                spriteRenderer.color = damagedColor1;
-            }
-            else // 33% หรือน้อยกว่า
-            {
-                spriteRenderer.color = damagedColor2;
-            }
-            Debug.Log(name + " Health Percentage: " + (healthPercentage * 100) + "%");
+            positionX = newX;
+            positionY = newY;
+            transform.position = new Vector3(positionX, positionY, 0);
+            mapGenerator.mapdata[positionX, positionY] = this;
         }
     }
 }

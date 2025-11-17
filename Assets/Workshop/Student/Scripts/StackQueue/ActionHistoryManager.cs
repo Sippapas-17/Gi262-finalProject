@@ -1,7 +1,7 @@
-using System.Collections;
+using System.Collections; // ต้องมีสำหรับ IEnumerator
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+
 namespace Solution
 {
     public class ActionHistoryManager : MonoBehaviour
@@ -12,53 +12,76 @@ namespace Solution
         // 2. Auto-Move System using Queue
         private Queue<Vector2> autoMoveQueue = new Queue<Vector2>();
 
-        #region "This Is undoStack Function"
-
-        /// Saves the current player state (position) to the undo stack.
+        // เมธอดสำหรับบันทึกสถานะ (คุณต้องเรียกใช้ใน OOPPlayer.Move ก่อน base.Move)
         public void SaveStateForUndo(Vector2 currentPosition)
         {
-            // Only push a state if it's different from the last saved state 
-            // (optional optimization, but good practice for movement)
-        
+            undoStack.Push(currentPosition);
+            redoStack.Clear(); // เคลียร์ Redo เมื่อมีการเคลื่อนที่ใหม่
         }
-        /// Reverts the player's state to the previous one using the undo stack.
-        /// </summary>
+
+        // เมธอดที่ OOPPlayer เรียกใช้: Undo
         public void UndoLastMove(OOPPlayer player)
         {
-            // Need at least two states: the current one, and the one to revert to.
-           
+            if (undoStack.Count > 1) // ต้องมีอย่างน้อย 2 สถานะ (ปัจจุบันและก่อนหน้า)
+            {
+                // 1. Pop ตำแหน่งปัจจุบัน (ที่ไม่ต้องการ) ไปใส่ Redo
+                Vector2 lastPos = undoStack.Pop(); // <--- แก้ไข Syntax ตรงนี้
+                redoStack.Push(lastPos);
+
+                // 2. Peek ตำแหน่งก่อนหน้าเพื่อย้อนกลับไป
+                Vector2 previousPos = undoStack.Peek();
+                player.UpdatePosition((int)previousPos.x, (int)previousPos.y);
+            }
+            else
+            {
+                Debug.Log("Cannot Undo: History is empty or only start position remains.");
+            }
         }
+
+        // เมธอดที่ OOPPlayer เรียกใช้: Redo
         public void RedoLastMove(OOPPlayer player)
         {
-            // Need at least two states: the current one, and the one to revert to.
+            if (redoStack.Count > 0)
+            {
+                Vector2 nextPos = redoStack.Pop();
 
+                // บันทึกตำแหน่งปัจจุบันลงใน Undo Stack ก่อนเคลื่อนที่
+                undoStack.Push(new Vector2(player.positionX, player.positionY));
+
+                // เคลื่อนที่ไปยังตำแหน่ง Redo
+                player.UpdatePosition((int)nextPos.x, (int)nextPos.y);
+            }
+            else
+            {
+                Debug.Log("Cannot Redo: Redo Stack is empty.");
+            }
         }
-        #endregion
 
-        #region "This Is autoMoveQueue Function"
-
+        // เมธอดที่ OOPPlayer เรียกใช้: StartAutoMoveSequence
         public void StartAutoMoveSequence(OOPPlayer player)
         {
-            //create a sample sequence of moves
-            // 1. prepare the Queue with the sequence of moves
+            // สร้าง Sequence ตัวอย่าง
+            autoMoveQueue.Clear();
+            autoMoveQueue.Enqueue(Vector2.right);
+            autoMoveQueue.Enqueue(Vector2.up);
+            // ... (เพิ่มทิศทางอื่น ๆ ตามต้องการ)
 
-            // Start the coroutine to process the auto-move sequence
             StartCoroutine(ProcessAutoMoveSequence(player));
         }
+
+        // Coroutine สำหรับประมวลผล Queue
         public IEnumerator ProcessAutoMoveSequence(OOPPlayer player)
         {
             player.isAutoMoving = true;
-            Debug.Log($"Auto-move sequence started with {autoMoveQueue.Count} steps.");
 
-            // 2. process the Queue step-by-step
-            yield return new WaitForSeconds(0.5f); // Initial delay before starting
+            while (autoMoveQueue.Count > 0)
+            {
+                Vector2 nextMove = autoMoveQueue.Dequeue();
+                player.Move(nextMove); // เรียก Move เพื่อให้เกิด Side Effect (ถ้ามี)
+                yield return new WaitForSeconds(0.3f); // รอ 0.3 วินาทีต่อการเคลื่อนไหว
+            }
 
             player.isAutoMoving = false;
-            Debug.Log("Auto-move sequence finished.");
         }
-
-        #endregion
-
     }
 }
-

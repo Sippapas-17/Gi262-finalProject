@@ -1,26 +1,75 @@
 using Solution;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
-public class NPC : Identity
+namespace Solution
 {
-    public DialogueUI dialogueUI;
-    public DialogueSequen dialogueSeauen;
-    public bool canTalk = true;
-
-    public override bool Hit()
+    public class NPC : Identity
     {
-        // ตรวจสอบว่าผู้เล่นมีไอเท็มที่ต้องการหรือไม่
-        if (canTalk)
+        public DialogueUI dialogueUI;
+        public DialogueSequen dialogueSeauen;
+        public bool canTalk = true;
+
+        public override bool Hit()
         {
-            dialogueUI.Setup(dialogueSeauen);
-            dialogueSeauen.dialogueUI = dialogueUI;
-            return false;
+            Debug.Log("NPC: Blocked player movement.");
+            return false; // ไม่ให้เดินทะลุ
         }
-        else
+
+        public override bool Interact(OOPPlayer player)
         {
-            Debug.Log("I not neet to talk to you");
-            return false;
+            if (dialogueUI == null || dialogueSeauen == null)
+            {
+                Debug.LogError("NPC Error: DialogueUI หรือ DialogueSequen เป็น None ใน Inspector!");
+                return false;
+            }
+
+            if (canTalk)
+            {
+                Debug.Log("NPC: Starting dialogue...");
+                dialogueUI.Setup(dialogueSeauen);
+                StartDialogue(player);
+                return true;
+            }
+            else
+            {
+                Debug.Log("NPC: Not ready to talk.");
+                return false;
+            }
+        }
+
+        public void StartDialogue(OOPPlayer player)
+        {
+            dialogueUI.gameObject.SetActive(true);
+            dialogueSeauen.dialogueUI = dialogueUI;
+
+            DialogueNode nextNode;
+
+            // NPC จะตรวจสอบ Inventory และให้คำใบ้ที่ถูกต้อง
+            if (player.inventory != null && player.inventory.HasItem("MasterKey", 1))
+            {
+                nextNode = dialogueSeauen.GetNode("farewell");
+            }
+            else if (player.inventory != null && player.inventory.HasItem("KeyPart1", 1))
+            {
+                nextNode = dialogueSeauen.GetNode("clue2");
+            }
+            else
+            {
+                nextNode = dialogueSeauen.GetNode("clue1");
+            }
+
+            if (nextNode != null)
+            {
+                dialogueSeauen.currentNode = nextNode;
+                dialogueUI.ShowDialogue(nextNode);
+
+                dialogueUI.ShowCloseButtonDialog(); // <--- สั่งให้ปุ่ม "ปิด" แสดงขึ้นมา
+            }
+            else
+            {
+                Debug.LogError("NPC Error: DialogueNode not found.");
+                dialogueUI.HideDialogue();
+            }
         }
     }
 }
