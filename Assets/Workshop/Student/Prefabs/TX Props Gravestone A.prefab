@@ -104,4 +104,5 @@ MonoBehaviour:
   positionX: 0
   positionY: 0
   mapGenerator: {fileID: 0}
-  objectType: 2
+  objectType: 4
+  openSprite: {fileID: 0}
