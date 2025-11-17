@@ -1,0 +1,1451 @@
+fileFormatVersion: 2
+guid: 5dbd680799dc29b449eed46a4c8cce36
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_0
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 806
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f66dbe7360713b341866b270693ec13a
+      internalID: 1592196342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_1
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 806
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed476b80a523bca4fa4cc87a66acffb1
+      internalID: 5784833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_2
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 806
+        width: 93
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b5faba62a3c6524396af165bd5d3e41
+      internalID: -2141830082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_3
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 806
+        width: 91
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3afa6cfd3695b8b4cbcb12f87fc012d5
+      internalID: 1783012159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_4
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 806
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d82e69827937daa46972dcc6c1d82210
+      internalID: 1974882796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_5
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 806
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8729bfb459427e4cb9513a50802b52b
+      internalID: -1385329503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_6
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 806
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 639278c35f4ea0345ae13b1505676a9b
+      internalID: -553560398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_7
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 806
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b3042194b776ee40b3958fee07dc4c1
+      internalID: -1978467633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_8
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 806
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96ee4f5202c76b548a5e191cdd655b20
+      internalID: -992027944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_9
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 806
+        width: 99
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 151646ed96a2a5b4c923bbb72c3840a5
+      internalID: -1922471078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_10
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 806
+        width: 99
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5649bf36b233014eaa29c5630546f97
+      internalID: -414802043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_11
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 680
+        width: 98
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95e9735fe6590264196a6a0c55d41fb3
+      internalID: 1557253683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_12
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 699
+        width: 104
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2494260595143f044b4c0c3baed588c1
+      internalID: -1810916707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_13
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 682
+        width: 97
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90fc76d627c33d148aed46896d846714
+      internalID: -1387075839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_14
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 682
+        width: 97
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 801a195754d370b48b76bc6f0eeb3345
+      internalID: -56882211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_15
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 680
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eddc7d3fb71a85f4fba06e08aee0f3f9
+      internalID: 1707167748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_16
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 680
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c5ffebf8658c2947a545f805e4ce5e4
+      internalID: -437238356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_17
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 680
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9317d581cf4987746a8bbfc1ac2cb29a
+      internalID: 73988301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_18
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 713
+        width: 98
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2285eed27f1a054cad33f683cb3d373
+      internalID: -389892273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_19
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 680
+        width: 98
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b8ef41aee1a3bc4b8e2fe4b54a1fb25
+      internalID: 79388349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_20
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 680
+        width: 99
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21c658088ac4fa64bb63958cdb98c001
+      internalID: 1996683856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_21
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 680
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a907f634bc6b34b4a859b6d13db5d796
+      internalID: -1544281520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_22
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 688
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d19fb7c11a6a38b4f9ed2c962c008dfc
+      internalID: -1089482759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_23
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 688
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6918c5ce212b06459715b0662a0917d
+      internalID: -592053997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_24
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 688
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0e17b29fac083b4bb2e584eaaecc5dc
+      internalID: 1732561174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_25
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 688
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37336a3a78402f04996a35567caf7592
+      internalID: 115362866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_26
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 688
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f83a4ece08045de44a05bb404fcda6ea
+      internalID: 2146781715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_27
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 688
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67843afbe18967a46bd4cd73ac87f420
+      internalID: -1145215212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_28
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 688
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49f914a4fd38170419722bd4bc649395
+      internalID: -552071683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_29
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 688
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ec1e167bba3a3941a9492321b3d2038
+      internalID: 1691964055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_30
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 688
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78ed8f83b4afe9047897790cc3ba7a4a
+      internalID: -1212688937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_31
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 688
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8293d7a7a8bc10c4b821802489b29b26
+      internalID: 2012211909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_32
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 688
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da7f7edf4cfec254f9149be5d5af763e
+      internalID: 159879395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_33
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 688
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31f4536c691ec30479ab4ec3cba63d52
+      internalID: -779690354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_34
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 448
+        width: 104
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee72af26d79c7ba418e385f33ac00334
+      internalID: 604606005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_35
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 448
+        width: 103
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63b35802100d86a4b84256a00bac7dcb
+      internalID: 874480104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_36
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 448
+        width: 103
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b1492f185ca3334798ca0c78234ac0b
+      internalID: 994786509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_37
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 448
+        width: 103
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce9b0a61885c1714f8afa29e8490ee16
+      internalID: 1154445479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_38
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 448
+        width: 63
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90c20acd3efc045499abcad48c6d80d9
+      internalID: 1119765907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_39
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 448
+        width: 79
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15bd4c76b26760a409f784fec7445756
+      internalID: -901123926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_40
+      rect:
+        serializedVersion: 2
+        x: 1193
+        y: 448
+        width: 44
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdab941f58b0a414786cc25428f42e6c
+      internalID: -324896280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_41
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 448
+        width: 40
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0193e35bad1e0a49912fbfa41b7923d
+      internalID: -2115063672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_42
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 192
+        width: 54
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b5700bf52fe5ac4592d250380242d74
+      internalID: 788180783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_43
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 216
+        width: 45
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4588a404adbbd934aad641b327f354f3
+      internalID: 1391444686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_44
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 248
+        width: 47
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b372f2cd76517c340b4adf08fdf6a76a
+      internalID: 799520055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_45
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 248
+        width: 56
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e4d097a225c436498cc6738e2a6d7d0
+      internalID: 2064857976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_46
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 248
+        width: 48
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0002c964cc6acee46b214e09a5b31bef
+      internalID: 142940600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_47
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 211
+        width: 39
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b48a098a5f52eff439195413471abf96
+      internalID: 1298899353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_48
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 227
+        width: 40
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f4406cab2fa06e47924ee1d4ba2388b
+      internalID: 1642594566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_49
+      rect:
+        serializedVersion: 2
+        x: 1064
+        y: 226
+        width: 80
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f6bf08315904b247a7b55dbd50ca5c2
+      internalID: 2024084802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_50
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 214
+        width: 60
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eff735b3743efa941b46ab7bce035c35
+      internalID: -729562240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_51
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 85
+        width: 49
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f9f8dcce896b664abf4582d3686489c
+      internalID: -109492394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_52
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 83
+        width: 53
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55bb0e4d606334c49a32be2472ef5d5a
+      internalID: 459516157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_53
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 84
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a6543c5ca513fd4ba1aea0814cd894f
+      internalID: -1321079172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_54
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 85
+        width: 48
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e06bed485498abd49929880fbbc155f9
+      internalID: 1778101325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_55
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 86
+        width: 56
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5692e1ea1dee5654bb5bd9791f2a1163
+      internalID: -103816962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_56
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 85
+        width: 56
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc55f27a0eacf1d42a79dba388c5e51b
+      internalID: -146374434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Free-Medieval-Tileset-Pixel-Art-Pack4_57
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 86
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 065c53351a0948241b3f7135ec3a1687
+      internalID: -1553089150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 7bf48fecf735a46449277a9f28a4a6e1
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Free-Medieval-Tileset-Pixel-Art-Pack4_0: 1592196342
+      Free-Medieval-Tileset-Pixel-Art-Pack4_1: 5784833
+      Free-Medieval-Tileset-Pixel-Art-Pack4_10: -414802043
+      Free-Medieval-Tileset-Pixel-Art-Pack4_11: 1557253683
+      Free-Medieval-Tileset-Pixel-Art-Pack4_12: -1810916707
+      Free-Medieval-Tileset-Pixel-Art-Pack4_13: -1387075839
+      Free-Medieval-Tileset-Pixel-Art-Pack4_14: -56882211
+      Free-Medieval-Tileset-Pixel-Art-Pack4_15: 1707167748
+      Free-Medieval-Tileset-Pixel-Art-Pack4_16: -437238356
+      Free-Medieval-Tileset-Pixel-Art-Pack4_17: 73988301
+      Free-Medieval-Tileset-Pixel-Art-Pack4_18: -389892273
+      Free-Medieval-Tileset-Pixel-Art-Pack4_19: 79388349
+      Free-Medieval-Tileset-Pixel-Art-Pack4_2: -2141830082
+      Free-Medieval-Tileset-Pixel-Art-Pack4_20: 1996683856
+      Free-Medieval-Tileset-Pixel-Art-Pack4_21: -1544281520
+      Free-Medieval-Tileset-Pixel-Art-Pack4_22: -1089482759
+      Free-Medieval-Tileset-Pixel-Art-Pack4_23: -592053997
+      Free-Medieval-Tileset-Pixel-Art-Pack4_24: 1732561174
+      Free-Medieval-Tileset-Pixel-Art-Pack4_25: 115362866
+      Free-Medieval-Tileset-Pixel-Art-Pack4_26: 2146781715
+      Free-Medieval-Tileset-Pixel-Art-Pack4_27: -1145215212
+      Free-Medieval-Tileset-Pixel-Art-Pack4_28: -552071683
+      Free-Medieval-Tileset-Pixel-Art-Pack4_29: 1691964055
+      Free-Medieval-Tileset-Pixel-Art-Pack4_3: 1783012159
+      Free-Medieval-Tileset-Pixel-Art-Pack4_30: -1212688937
+      Free-Medieval-Tileset-Pixel-Art-Pack4_31: 2012211909
+      Free-Medieval-Tileset-Pixel-Art-Pack4_32: 159879395
+      Free-Medieval-Tileset-Pixel-Art-Pack4_33: -779690354
+      Free-Medieval-Tileset-Pixel-Art-Pack4_34: 604606005
+      Free-Medieval-Tileset-Pixel-Art-Pack4_35: 874480104
+      Free-Medieval-Tileset-Pixel-Art-Pack4_36: 994786509
+      Free-Medieval-Tileset-Pixel-Art-Pack4_37: 1154445479
+      Free-Medieval-Tileset-Pixel-Art-Pack4_38: 1119765907
+      Free-Medieval-Tileset-Pixel-Art-Pack4_39: -901123926
+      Free-Medieval-Tileset-Pixel-Art-Pack4_4: 1974882796
+      Free-Medieval-Tileset-Pixel-Art-Pack4_40: -324896280
+      Free-Medieval-Tileset-Pixel-Art-Pack4_41: -2115063672
+      Free-Medieval-Tileset-Pixel-Art-Pack4_42: 788180783
+      Free-Medieval-Tileset-Pixel-Art-Pack4_43: 1391444686
+      Free-Medieval-Tileset-Pixel-Art-Pack4_44: 799520055
+      Free-Medieval-Tileset-Pixel-Art-Pack4_45: 2064857976
+      Free-Medieval-Tileset-Pixel-Art-Pack4_46: 142940600
+      Free-Medieval-Tileset-Pixel-Art-Pack4_47: 1298899353
+      Free-Medieval-Tileset-Pixel-Art-Pack4_48: 1642594566
+      Free-Medieval-Tileset-Pixel-Art-Pack4_49: 2024084802
+      Free-Medieval-Tileset-Pixel-Art-Pack4_5: -1385329503
+      Free-Medieval-Tileset-Pixel-Art-Pack4_50: -729562240
+      Free-Medieval-Tileset-Pixel-Art-Pack4_51: -109492394
+      Free-Medieval-Tileset-Pixel-Art-Pack4_52: 459516157
+      Free-Medieval-Tileset-Pixel-Art-Pack4_53: -1321079172
+      Free-Medieval-Tileset-Pixel-Art-Pack4_54: 1778101325
+      Free-Medieval-Tileset-Pixel-Art-Pack4_55: -103816962
+      Free-Medieval-Tileset-Pixel-Art-Pack4_56: -146374434
+      Free-Medieval-Tileset-Pixel-Art-Pack4_57: -1553089150
+      Free-Medieval-Tileset-Pixel-Art-Pack4_6: -553560398
+      Free-Medieval-Tileset-Pixel-Art-Pack4_7: -1978467633
+      Free-Medieval-Tileset-Pixel-Art-Pack4_8: -992027944
+      Free-Medieval-Tileset-Pixel-Art-Pack4_9: -1922471078
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
