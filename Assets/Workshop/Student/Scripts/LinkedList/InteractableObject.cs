@@ -1,47 +1,47 @@
-using UnityEngine;
+๏ปฟusing UnityEngine;
 
 namespace Solution
 {
-    // 1. Enum (ตัวเลือก) สำหรับประเภทของวัตถุ
+    // 1. Enum (ยตร‘รร ร…ร—รยก) รร“รรร‘ยบยปรรร ร€ยทยขรยงรร‘ยตยถร
     public enum InteractableType
     {
-        Statue,     // รูปปั้น
-        Box,        // กล่อง
-        Fermenter,  // ถังหมัก
-        Chest,      // หีบ
-        Coffin      // โลงศพ
+        Statue,     // รรยปยปร‘รฉยน
+        Box,        // ยกร…รจรยง
+        Fermenter,  // ยถร‘ยงรรร‘ยก
+        Chest,      // รร•ยบ
+        Coffin      // รขร…ยงรยพ
     }
 
     public class InteractableObject : Identity
     {
         [Header("Object Type")]
-        // 2. นี่คือช่องที่ต้องมีใน Inspector
+        // 2. ยนร•รจยคร—รยชรจรยงยทร•รจยตรฉรยงรร•รฃยน Inspector
         public InteractableType objectType;
 
-        // (เราลบ Item To Give ออก)
+        // (ร รร’ร…ยบ Item To Give รรยก)
 
-        // (เราลบ DialogueUI และ Sequen ออก)
+        // (ร รร’ร…ยบ DialogueUI รกร…ร Sequen รรยก)
 
         public override void SetUP()
         {
-            // ไม่ต้องทำอะไร
+            // รครรจยตรฉรยงยทร“รรรคร
         }
 
         public override bool Interact(OOPPlayer player)
         {
-            // 1. เช็คว่าผู้เล่นเจอไอเท็มไปแล้วหรือยัง
+            // 1. ร ยชรงยครรจร’ยผรรฉร ร…รจยนร ยจรรครร ยทรงรรคยปรกร…รฉรรรร—รรร‘ยง
             if (GameState.Key1_Found)
             {
                 Debug.Log("The object is now empty.");
                 return false;
             }
 
-            // 2. เช็คว่า "ฉัน" (วัตถุนี้) คือที่ซ่อนกุญแจที่ถูกสุ่มเลือกหรือไม่
-            string myType = objectType.ToString(); // (เช่น "Chest", "Fermenter")
+            // 2. ร ยชรงยครรจร’ "ยฉร‘ยน" (รร‘ยตยถรยนร•รฉ) ยคร—รยทร•รจยซรจรยนยกรยญรกยจยทร•รจยถรยกรรรจรร ร…ร—รยกรรร—รรครรจ
+            string myType = objectType.ToString(); // (ร ยชรจยน "Chest", "Fermenter")
 
             if (myType == GameState.Key1_LocationName)
             {
-                // 3. ถ้าใช่ ให้ KeyPart1
+                // 3. ยถรฉร’รฃยชรจ รฃรรฉ KeyPart1
                 player.inventory.AddItem("KeyPart1", 1);
                 GameState.Key1_Found = true;
 
@@ -49,11 +49,11 @@ namespace Solution
                 return true;
             }
 
-            // 4. ถ้าไม่ใช่ที่ซ่อนกุญแจ
+            // 4. ยถรฉร’รครรจรฃยชรจยทร•รจยซรจรยนยกรยญรกยจ
             Debug.Log($"You examine the {Name}, but find nothing.");
             return true;
         }
 
-        public override bool Hit() { return false; } // บล็อกไม่ให้เดินทะลุ
+        public override bool Hit() { return false; } // ยบร…รงรยกรครรจรฃรรฉร ยดร”ยนยทรร…ร
     }
 }

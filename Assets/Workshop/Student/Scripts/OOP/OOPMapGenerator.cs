@@ -1,4 +1,4 @@
-using System.Collections;
+๏ปฟusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,9 +27,9 @@ namespace Solution
         [Header("Set Prefab")]
         public GameObject[] floorsPrefab;
         public GameObject[] wallsPrefab;
-        public GameObject[] demonWallsPrefab; // กำแพงที่ทำลายได้
+        public GameObject[] demonWallsPrefab; // ยกร“รกยพยงยทร•รจยทร“ร…ร’รรคยดรฉ
 
-        // Prefab สำหรับวัตถุโต้ตอบ 5 ชนิด
+        // Prefab รร“รรร‘ยบรร‘ยตยถรรขยตรฉยตรยบ 5 ยชยนร”ยด
         public GameObject[] statuesPrefab;
         public GameObject[] boxesPrefab;
         public GameObject[] fermentersPrefab;
@@ -141,7 +141,7 @@ namespace Solution
             player.mapGenerator = this;
             player.positionX = playerStartPos.x;
             player.positionY = playerStartPos.y;
-            // ผู้เล่นอยู่ที่ Z = -0.1f (หน้าสุด)
+            // ยผรรฉร ร…รจยนรรรรจยทร•รจ Z = -0.1f (รยนรฉร’รรยด)
             player.transform.position = new Vector3(playerStartPos.x, playerStartPos.y, -0.1f);
             mapdata[playerStartPos.x, playerStartPos.y] = player;
         }
@@ -157,7 +157,7 @@ namespace Solution
                     {
                         if (wallsPrefab.Length == 0) continue;
                         int r = Random.Range(0, wallsPrefab.Length);
-                        // กำแพงขอบอยู่ที่ Z = 0
+                        // ยกร“รกยพยงยขรยบรรรรจยทร•รจ Z = 0
                         GameObject obj = Instantiate(wallsPrefab[r], new Vector3(x, y, 0), Quaternion.identity);
                         obj.transform.parent = wallParent;
                         obj.name = "Wall_" + x + ", " + y;
@@ -166,7 +166,7 @@ namespace Solution
                     {
                         if (floorsPrefab.Length == 0) continue;
                         int r = Random.Range(0, floorsPrefab.Length);
-                        // พื้นอยู่ที่ Z = 1 (หลังสุด)
+                        // ยพร—รฉยนรรรรจยทร•รจ Z = 1 (รร…ร‘ยงรรยด)
                         GameObject obj = Instantiate(floorsPrefab[r], new Vector3(x, y, 1), Quaternion.identity);
                         obj.transform.parent = floorParent;
                         obj.name = "floor_" + x + ", " + y;
@@ -181,9 +181,27 @@ namespace Solution
             if (_itemsPrefab.Length == 0) return;
             int r = Random.Range(0, _itemsPrefab.Length);
 
-            GameObject obj = Instantiate(_itemsPrefab[r], new Vector3(x, y, -0.05f), Quaternion.identity);
+            float zPos = -0.05f;
+            float yOffset = 0f;
+
+            if (_name == "Statue" || _name == "Box" || _name == "Coffin" ||
+                _name == "Chest" || _name == "Fermenter")
+            {
+                yOffset = -0.5f;
+            }
+
+            GameObject obj = Instantiate(_itemsPrefab[r], new Vector3(x, y + yOffset, zPos), Quaternion.identity);
 
             obj.transform.parent = parrent;
+
+            if (_name == "Statue" || _name == "Box" || _name == "Fermenter" || _name == "Coffin")
+            {
+                SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.sortingOrder = 1;
+                }
+            }
 
             Identity identityComponent = obj.GetComponent<Identity>();
             if (identityComponent == null)
@@ -210,7 +228,7 @@ namespace Solution
             obj.name = $"Object_{mapdata[x, y].Name} {x}, {y}";
         }
 
-        // เมธอดที่ Character.cs เรียกใช้ (ต้องมี)
+        // ร รยธรยดยทร•รจ Character.cs ร รร•รยกรฃยชรฉ (ยตรฉรยงรร•)
         public bool HasPlacement(int x, int y)
         {
             if (x >= 0 && x < X && y >= 0 && y < Y)
@@ -220,7 +238,7 @@ namespace Solution
             return false;
         }
 
-        // เมธอดที่ Character.cs เรียกใช้ (ต้องมี)
+        // ร รยธรยดยทร•รจ Character.cs ร รร•รยกรฃยชรฉ (ยตรฉรยงรร•)
         public Identity GetMapData(int x, int y)
         {
             if (x >= 0 && x < X && y >= 0 && y < Y)
