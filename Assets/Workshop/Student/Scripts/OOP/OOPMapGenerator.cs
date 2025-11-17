@@ -61,6 +61,33 @@ namespace Solution
 
         private void Awake()
         {
+            List<string> possibleLocations = new List<string>
+            {
+                "Statue",
+                "Box",
+                "Fermenter",
+                "Chest",
+                "Coffin"
+            };
+
+            // 2. สุ่มเลือกที่ซ่อนสำหรับ KeyPart1
+            int index1 = Random.Range(0, possibleLocations.Count);
+            GameState.KeyPart1_Location = possibleLocations[index1];
+
+            // 3. ลบที่ซ่อนที่เลือกแล้วออกจากลิสต์ (ป้องกันการสุ่มซ้ำ)
+            possibleLocations.RemoveAt(index1);
+
+            // 4. สุ่มเลือกที่ซ่อนสำหรับ KeyPart2 จากลิสต์ที่เหลือ
+            int index2 = Random.Range(0, possibleLocations.Count);
+            GameState.KeyPart2_Location = possibleLocations[index2];
+
+            // 5. รีเซ็ตสถานะการค้นหา
+            GameState.KeyPart1_Found = false;
+            GameState.KeyPart2_Found = false;
+
+            // (สำหรับ Debug) แสดงใน Console ว่ากุญแจอยู่ที่ไหน
+            Debug.LogWarning($"*** DEBUG: Key 1 hidden in: {GameState.KeyPart1_Location} ***");
+            Debug.LogWarning($"*** DEBUG: Key 2 hidden in: {GameState.KeyPart2_Location} ***");
             CreateMap();
         }
 

@@ -1,15 +1,15 @@
-using UnityEngine;
-
-namespace Solution // <--- 1. ต้องครอบด้วย Namespace
+namespace Solution
 {
     // คลาสนี้ไม่ต้องติดกับ GameObject
-    // "static" หมายถึงเป็นของส่วนกลาง
+    // ใช้สำหรับเก็บ "คำตอบ" ของเกม
     public static class GameState
     {
-        // 2. ตัวแปรนี้จะเก็บ "ชื่อ" ของที่ซ่อนกุญแจ
-        public static string Key1_LocationName = "";
+        // Key 1
+        public static string KeyPart1_Location = ""; // (จะเก็บชื่อเช่น "Chest" หรือ "Box")
+        public static bool KeyPart1_Found = false;
 
-        // 3. ตัวแปรนี้จะเช็คว่าผู้เล่นเจอกุญแจแล้ว
-        public static bool Key1_Found = false;
+        // Key 2
+        public static string KeyPart2_Location = ""; // (จะเก็บชื่อเช่น "Statue" หรือ "Coffin")
+        public static bool KeyPart2_Found = false;
     }
 }

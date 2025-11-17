@@ -29,9 +29,12 @@ namespace Solution
             DialogueNode currentNode = InterractNpcSequen.tree.root;
             ShowDialogue(currentNode);
 
-            // การเรียกใช้ closeButtonDialogue จะไม่ Error แล้ว
             closeButtonDialogue.SetActive(false);
-            gameObject.SetActive(true);
+
+            // **********************************
+            // ******* ลบบรรทัดนี้ทิ้ง *******
+            // **********************************
+            // gameObject.SetActive(true); // <--- ลบ หรือ คอมเมนต์บรรทัดนี้ทิ้ง
         }
 
         public void ShowDialogue(DialogueNode node)
