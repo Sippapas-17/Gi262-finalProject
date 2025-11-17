@@ -3331,8 +3331,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8365133027701863277, guid: 896fac2834903504f8973b3186300203, type: 3}
+      propertyPath: SkillCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365133027701863277, guid: 896fac2834903504f8973b3186300203, type: 3}
       propertyPath: obsatcleCount
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365133027701863277, guid: 896fac2834903504f8973b3186300203, type: 3}
+      propertyPath: colloctItemCount
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8365133027701863277, guid: 896fac2834903504f8973b3186300203, type: 3}
       propertyPath: boxesPrefab.Array.size
