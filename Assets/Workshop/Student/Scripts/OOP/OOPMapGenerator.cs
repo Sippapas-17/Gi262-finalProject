@@ -221,7 +221,7 @@ namespace Solution
 
             obj.transform.parent = parrent;
 
-            if (_name == "Statue" || _name == "Box" || _name == "Fermenter" || _name == "Coffin")
+            if (_name == "Statue" || _name == "Box" || _name == "Fermenter" || _name == "Coffin" || _name == "Chest")
             {
                 SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
                 if (spriteRenderer != null)
