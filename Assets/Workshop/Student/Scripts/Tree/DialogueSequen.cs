@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Solution; // เพื่อให้รู้จัก OOPPlayer, Inventory
+using Solution; 
 
-// NOTE: คลาส DialogueNode และ DialogueTree ถูกประกาศในไฟล์นี้ 
 namespace Solution
 {
-    // *** 1. คลาส DialogueNode ***
     public class DialogueNode
     {
         public string text;
@@ -24,7 +22,6 @@ namespace Solution
         }
     }
 
-    // *** 2. คลาส DialogueTree ***
     public class DialogueTree
     {
         public DialogueNode root;
@@ -36,7 +33,6 @@ namespace Solution
     }
 
 
-    // *** 3. คลาส DialogueSequen หลัก ***
     public class DialogueSequen : MonoBehaviour
     {
         public DialogueTree tree;
@@ -52,7 +48,6 @@ namespace Solution
 
         private void LoadConversations()
         {
-            // --- 1. Node สำหรับ NPC ---
             DialogueNode greeting = new DialogueNode("Ah, traveler! I know you seek the way out. Find the Master Key.");
             allNodes.Add("greeting", greeting);
 
@@ -65,33 +60,21 @@ namespace Solution
             DialogueNode farewell = new DialogueNode("You have proven yourself. The Master Key will open the Final Gate.");
             allNodes.Add("farewell", farewell);
 
-            // ******************************************************
-            // ******* 2. เพิ่ม Node สำหรับวัตถุโต้ตอบ (Interactable Objects) *******
-            // ******************************************************
-
-            // หีบ (Chest)
             DialogueNode chestNode = new DialogueNode("Perhaps the key is in what treasure hunters seek most?");
-            allNodes.Add("Chest", chestNode); // <--- Key ต้องตรงกับที่ InteractableObject เรียกใช้
+            allNodes.Add("Chest", chestNode); 
 
-            // กล่อง (Box)
             DialogueNode boxNode = new DialogueNode("In many games, people love to break these.");
             allNodes.Add("Box", boxNode);
 
-            // ถังหมัก (Fermenter)
             DialogueNode fermenterNode = new DialogueNode("This is often used for fermenting or storing goods.");
             allNodes.Add("Fermenter", fermenterNode);
 
-            // โลงศพ/หลุมศพ (Coffin)
             DialogueNode coffinNode = new DialogueNode("A final resting place.");
             allNodes.Add("Coffin", coffinNode);
 
-            // รูปปั้น (Statue)
             DialogueNode statueNode = new DialogueNode("People build these to remember someone or something.");
             allNodes.Add("Statue", statueNode);
 
-            // ******************************************************
-
-            // กำหนด Root Node (สำหรับ NPC)
             tree = new DialogueTree(greeting);
         }
 
