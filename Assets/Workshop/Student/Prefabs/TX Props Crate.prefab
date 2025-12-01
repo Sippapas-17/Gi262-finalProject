@@ -105,3 +105,5 @@ MonoBehaviour:
   positionY: 0
   mapGenerator: {fileID: 0}
   objectType: 1
+  openSprite: {fileID: 0}
+  interactSound: {fileID: 8300000, guid: 040890cd927a2c5449155570a506b18b, type: 3}
