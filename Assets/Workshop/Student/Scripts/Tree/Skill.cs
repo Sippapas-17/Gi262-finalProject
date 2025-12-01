@@ -3,9 +3,6 @@ using UnityEngine;
 
 namespace Solution
 {
-    // **********************************************
-    // 1. คลาส Skill (Data Node)
-    // **********************************************
     public class Skill
     {
         public string name;
@@ -41,12 +38,8 @@ namespace Solution
             }
         }
 
-        // ... (เมธอด PrintSkillTreeHierarchy อื่นๆ) ...
     }
 
-    // **********************************************
-    // 2. คลาส SkillTree (ถูกสร้างและรวมไว้ในไฟล์เดียวกัน)
-    // **********************************************
     public class SkillTree
     {
         public Skill rootSkill;

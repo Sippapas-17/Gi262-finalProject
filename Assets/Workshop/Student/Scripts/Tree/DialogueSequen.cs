@@ -105,31 +105,23 @@ namespace Solution
             return tree.root;
         }
 
-        // เมธอดสำหรับจัดการเมื่อผู้เล่น "เลือก" ตัวเลือก
         public void SelectChoice(int index)
         {
-            // ตรวจสอบว่ามีตัวเลือกให้เลือกหรือไม่
             if (currentNode == null || currentNode.nexts.Count == 0 || index >= currentNode.nexts.Count)
             {
-                // ถ้าไม่มีตัวเลือก หรือ index ผิดพลาด ให้ปิด Dialogue
                 dialogueUI.HideDialogue();
                 return;
             }
 
-            // 1. หา Key ของตัวเลือกที่ผู้เล่นกด
             var choiceKeys = new List<string>(currentNode.nexts.Keys);
             string selectedKey = choiceKeys[index];
 
-            // 2. ไปยัง Node ถัดไป
             currentNode = currentNode.nexts[selectedKey];
 
-            // 3. แสดง Node ถัดไป
             dialogueUI.ShowDialogue(currentNode);
 
-            // 4. ตรวจสอบว่า Node ใหม่นี้มีตัวเลือกต่อไปหรือไม่
             if (currentNode.nexts.Count == 0)
             {
-                // ถ้า Node ใหม่นี้ไม่มีตัวเลือก (เป็นจุดจบ) ให้แสดงปุ่มปิด
                 dialogueUI.ShowCloseButtonDialog();
             }
         }

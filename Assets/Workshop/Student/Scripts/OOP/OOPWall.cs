@@ -6,11 +6,8 @@ namespace Solution
     {
         public bool IsIceWall;
 
-        // 1. เปลี่ยนจาก private void Start()
-        // เป็น public override void SetUP()
         public override void SetUP()
         {
-            // (เรียก base.SetUP() ด้วยก็ดีครับ)
             base.SetUP();
 
             IsIceWall = Random.Range(0, 100) < 20 ? true : false;

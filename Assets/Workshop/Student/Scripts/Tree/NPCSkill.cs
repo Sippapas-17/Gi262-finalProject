@@ -21,7 +21,6 @@ public class NPCSkill : Identity
         }
     }
 
-    // ยังคงมีเมธอด Hit() เผื่อ NPC ถูกวางบน Map
     public override bool Hit()
     {
         return false;

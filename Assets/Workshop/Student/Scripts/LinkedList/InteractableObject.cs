@@ -19,11 +19,9 @@ namespace Solution
         [Header("Visuals")]
         public Sprite openSprite;
 
-        // **********************************
-        // 1. เพิ่มช่องใส่เสียงใน Inspector
-        // **********************************
+       
         [Header("Audio")]
-        public AudioClip interactSound; // ลากไฟล์เสียงมาใส่ในช่องนี้
+        public AudioClip interactSound; 
 
         private SpriteRenderer spriteRenderer;
         private bool isAlreadyOpen = false;
@@ -37,20 +35,14 @@ namespace Solution
         {
             if (isAlreadyOpen)
             {
-                // (Optional) อาจจะใส่เสียง "Lock" หรือเสียงไม่ได้ทำอะไรที่นี่
                 return false;
             }
 
-            // **********************************
-            // 2. สั่งเล่นเสียง (ถ้ามีคลิปเสียงใส่ไว้)
-            // **********************************
             if (interactSound != null)
             {
-                // PlayClipAtPoint จะสร้างวัตถุชั่วคราวเพื่อเล่นเสียงจนจบ (เหมาะกับวัตถุที่กำลังจะถูกทำลาย)
                 AudioSource.PlayClipAtPoint(interactSound, transform.position);
             }
 
-            // --- ส่วนที่เหลือเหมือนเดิม ---
             if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
             if (mapGenerator == null) { return false; }
 
@@ -75,7 +67,7 @@ namespace Solution
                 if (!foundKey) Debug.Log($"You broke the {Name}. It was empty.");
 
                 mapGenerator.mapdata[positionX, positionY] = null;
-                Destroy(gameObject); // เสียงจะยังเล่นต่อจนจบเพราะใช้ PlayClipAtPoint
+                Destroy(gameObject); 
             }
             else
             {

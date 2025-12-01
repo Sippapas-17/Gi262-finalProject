@@ -27,9 +27,8 @@ namespace Solution
         [Header("Set Prefab")]
         public GameObject[] floorsPrefab;
         public GameObject[] wallsPrefab;
-        public GameObject[] demonWallsPrefab; // ¡Óá¾§·Õè·ÓÅÒÂä´é
+        public GameObject[] demonWallsPrefab; 
 
-        // Prefab ÊÓËÃÑºÇÑµ¶ØâµéµÍº 5 ª¹Ô´
         public GameObject[] statuesPrefab;
         public GameObject[] boxesPrefab;
         public GameObject[] fermentersPrefab;
@@ -51,7 +50,6 @@ namespace Solution
 
         public Identity[,] mapdata;
 
-        // block types
         [HideInInspector] public string empty = "";
         [HideInInspector] public string demonWall = "demonWall";
         [HideInInspector] public string exit = "exit";
@@ -70,22 +68,17 @@ namespace Solution
                 "Coffin"
             };
 
-            // 2. สุ่มเลือกที่ซ่อนสำหรับ KeyPart1
             int index1 = Random.Range(0, possibleLocations.Count);
             GameState.KeyPart1_Location = possibleLocations[index1];
 
-            // 3. ลบที่ซ่อนที่เลือกแล้วออกจากลิสต์ (ป้องกันการสุ่มซ้ำ)
             possibleLocations.RemoveAt(index1);
 
-            // 4. สุ่มเลือกที่ซ่อนสำหรับ KeyPart2 จากลิสต์ที่เหลือ
             int index2 = Random.Range(0, possibleLocations.Count);
             GameState.KeyPart2_Location = possibleLocations[index2];
 
-            // 5. รีเซ็ตสถานะการค้นหา
             GameState.KeyPart1_Found = false;
             GameState.KeyPart2_Found = false;
 
-            // (สำหรับ Debug) แสดงใน Console ว่ากุญแจอยู่ที่ไหน
             Debug.LogWarning($"*** DEBUG: Key 1 hidden in: {GameState.KeyPart1_Location} ***");
             Debug.LogWarning($"*** DEBUG: Key 2 hidden in: {GameState.KeyPart2_Location} ***");
             CreateMap();
@@ -168,7 +161,6 @@ namespace Solution
             player.mapGenerator = this;
             player.positionX = playerStartPos.x;
             player.positionY = playerStartPos.y;
-            // ¼ÙéàÅè¹ÍÂÙè·Õè Z = -0.1f (Ë¹éÒÊØ´)
             player.transform.position = new Vector3(playerStartPos.x, playerStartPos.y, -0.1f);
             mapdata[playerStartPos.x, playerStartPos.y] = player;
         }
@@ -184,7 +176,6 @@ namespace Solution
                     {
                         if (wallsPrefab.Length == 0) continue;
                         int r = Random.Range(0, wallsPrefab.Length);
-                        // ¡Óá¾§¢ÍºÍÂÙè·Õè Z = 0
                         GameObject obj = Instantiate(wallsPrefab[r], new Vector3(x, y, 0), Quaternion.identity);
                         obj.transform.parent = wallParent;
                         obj.name = "Wall_" + x + ", " + y;
@@ -193,7 +184,6 @@ namespace Solution
                     {
                         if (floorsPrefab.Length == 0) continue;
                         int r = Random.Range(0, floorsPrefab.Length);
-                        // ¾×é¹ÍÂÙè·Õè Z = 1 (ËÅÑ§ÊØ´)
                         GameObject obj = Instantiate(floorsPrefab[r], new Vector3(x, y, 1), Quaternion.identity);
                         obj.transform.parent = floorParent;
                         obj.name = "floor_" + x + ", " + y;
@@ -255,7 +245,6 @@ namespace Solution
             obj.name = $"Object_{mapdata[x, y].Name} {x}, {y}";
         }
 
-        // àÁ¸Í´·Õè Character.cs àÃÕÂ¡ãªé (µéÍ§ÁÕ)
         public bool HasPlacement(int x, int y)
         {
             if (x >= 0 && x < X && y >= 0 && y < Y)
@@ -265,7 +254,6 @@ namespace Solution
             return false;
         }
 
-        // àÁ¸Í´·Õè Character.cs àÃÕÂ¡ãªé (µéÍ§ÁÕ)
         public Identity GetMapData(int x, int y)
         {
             if (x >= 0 && x < X && y >= 0 && y < Y)

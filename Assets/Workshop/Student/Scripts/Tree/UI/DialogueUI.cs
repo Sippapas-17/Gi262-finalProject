@@ -13,14 +13,10 @@ namespace Solution
         public Transform choiceContainer;
         public Button choiceButtonPrefab;
 
-        // **********************************
-        // ต้องมี GameObject นี้ประกาศไว้:
-        // **********************************
         public GameObject closeButtonDialogue;
 
         private DialogueSequen InterractNpcSequen;
 
-        // เก็บปุ่มที่ถูกสร้างขึ้น 
         private List<Button> activeButtons = new List<Button>();
 
         public void Setup(DialogueSequen sequen)
@@ -31,10 +27,6 @@ namespace Solution
 
             closeButtonDialogue.SetActive(false);
 
-            // **********************************
-            // ******* ลบบรรทัดนี้ทิ้ง *******
-            // **********************************
-            // gameObject.SetActive(true); // <--- ลบ หรือ คอมเมนต์บรรทัดนี้ทิ้ง
         }
 
         public void ShowDialogue(DialogueNode node)
@@ -75,7 +67,6 @@ namespace Solution
 
         public void ShowCloseButtonDialog()
         {
-            // การเรียกใช้ closeButtonDialogue จะไม่ Error แล้ว
             closeButtonDialogue.gameObject.SetActive(true);
         }
 

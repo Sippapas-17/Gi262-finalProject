@@ -1,6 +1,6 @@
 using Solution;
 
-namespace Solution // <-- CHANGED: ย้ายมาที่ Solution namespace
+namespace Solution 
 {
     public class PlayerScore
     {

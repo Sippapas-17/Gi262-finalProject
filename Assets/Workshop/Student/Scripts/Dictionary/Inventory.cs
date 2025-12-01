@@ -19,10 +19,7 @@ namespace Solution
             }
             Debug.Log("Added " + amount + " " + item + ". Total: " + inventory[item]);
 
-            // **********************************
-            // ******* เพิ่มการเรียกเมธอดนี้ *******
-            // **********************************
-            CheckForCrafting(); // ตรวจสอบการคราฟต์ทุกครั้งที่เพิ่มของ
+            CheckForCrafting(); 
         }
 
         public void UseItem(string item, int amount)
@@ -51,26 +48,17 @@ namespace Solution
             return 0;
         }
 
-        // **********************************
-        // ******* เมธอดใหม่สำหรับรวมกุญแจ *******
-        // **********************************
         private void CheckForCrafting()
         {
-            // ตรวจสอบสูตร MasterKey
             if (HasItem("KeyPart1", 1) && HasItem("KeyPart2", 1))
             {
-                // 1. ลบชิ้นส่วนออกจากกระเป๋า
                 UseItem("KeyPart1", 1);
                 UseItem("KeyPart2", 1);
 
-                // 2. เพิ่มกุญแจดอกสมบูรณ์
                 AddItem("MasterKey", 1);
 
-                // (แสดงข้อความพิเศษใน Console)
                 Debug.LogWarning("CRAFTING SUCCESS: Key parts combined into MasterKey!");
             }
-
-            // (คุณสามารถเพิ่มสูตรคราฟต์อื่น ๆ ที่นี่ได้ในอนาคต)
         }
     }
 }
