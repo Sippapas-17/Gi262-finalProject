@@ -6,7 +6,7 @@ namespace Solution
     public class OOPPlayer : Character
     {
         public Inventory inventory;
-        public ActionHistoryManager actionHistoryManager;
+        // ลบ ActionHistoryManager ออกแล้ว
 
         public bool isAutoMoving = false;
 
@@ -16,7 +16,6 @@ namespace Solution
             PrintInfo();
 
             if (inventory == null) inventory = GetComponent<Inventory>();
-            if (actionHistoryManager == null) actionHistoryManager = GetComponent<ActionHistoryManager>();
         }
 
         public void Update()
@@ -38,18 +37,12 @@ namespace Solution
 
         public override bool Move(Vector2 direction)
         {
-            if (actionHistoryManager != null)
-            {
-                actionHistoryManager.SaveStateForUndo(new Vector2(positionX, positionY));
-            }
-
             return base.Move(direction);
         }
 
-
         private void TryInteract()
         {
-            Vector2 direction = GetLastMoveDirection(); 
+            Vector2 direction = GetLastMoveDirection();
 
             int targetX = (int)(positionX + direction.x);
             int targetY = (int)(positionY + direction.y);

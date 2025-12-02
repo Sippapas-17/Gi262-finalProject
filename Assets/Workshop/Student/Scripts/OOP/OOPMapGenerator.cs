@@ -27,16 +27,14 @@ namespace Solution
         [Header("Set Prefab")]
         public GameObject[] floorsPrefab;
         public GameObject[] wallsPrefab;
-        public GameObject[] demonWallsPrefab; 
+        public GameObject[] demonWallsPrefab;
 
+        // Prefab สำหรับวัตถุโต้ตอบ 5 ชนิด
         public GameObject[] statuesPrefab;
         public GameObject[] boxesPrefab;
         public GameObject[] fermentersPrefab;
         public GameObject[] chestsPrefab;
         public GameObject[] coffinsPrefab;
-
-        public GameObject[] collectItemsPrefab;
-        public GameObject[] SkillPrefab;
 
         [Header("Set Transform")]
         public Transform floorParent;
@@ -45,8 +43,6 @@ namespace Solution
 
         [Header("Set object Count")]
         public int obsatcleCount;
-        public int colloctItemCount;
-        public int SkillCount;
 
         public Identity[,] mapdata;
 
@@ -54,23 +50,18 @@ namespace Solution
         [HideInInspector] public string demonWall = "demonWall";
         [HideInInspector] public string exit = "exit";
         [HideInInspector] public string playerOnMap = "player";
-        [HideInInspector] public string collectItem = "collectItem";
         [HideInInspector] public string npc = "Npc";
 
         private void Awake()
         {
+            // --- สุ่มที่ซ่อนกุญแจ ---
             List<string> possibleLocations = new List<string>
             {
-                "Statue",
-                "Box",
-                "Fermenter",
-                "Chest",
-                "Coffin"
+                "Statue", "Box", "Fermenter", "Chest", "Coffin"
             };
 
             int index1 = Random.Range(0, possibleLocations.Count);
             GameState.KeyPart1_Location = possibleLocations[index1];
-
             possibleLocations.RemoveAt(index1);
 
             int index2 = Random.Range(0, possibleLocations.Count);
@@ -79,8 +70,6 @@ namespace Solution
             GameState.KeyPart1_Found = false;
             GameState.KeyPart2_Found = false;
 
-            Debug.LogWarning($"*** DEBUG: Key 1 hidden in: {GameState.KeyPart1_Location} ***");
-            Debug.LogWarning($"*** DEBUG: Key 2 hidden in: {GameState.KeyPart2_Location} ***");
             CreateMap();
         }
 
@@ -96,13 +85,12 @@ namespace Solution
             SetUpNpc();
 
             PlaceItemsOnMap(obsatcleCount, demonWallsPrefab, wallParent, demonWall);
+
             PlaceItemsOnMap(1, statuesPrefab, itemParent, "Statue");
             PlaceItemsOnMap(1, boxesPrefab, itemParent, "Box");
             PlaceItemsOnMap(1, fermentersPrefab, itemParent, "Fermenter");
             PlaceItemsOnMap(1, chestsPrefab, itemParent, "Chest");
             PlaceItemsOnMap(1, coffinsPrefab, itemParent, "Coffin");
-            PlaceItemsOnMap(colloctItemCount, collectItemsPrefab, itemParent, collectItem);
-            PlaceItemsOnMap(SkillCount, SkillPrefab, itemParent, collectItem);
 
             yield return null;
         }
@@ -198,27 +186,37 @@ namespace Solution
             if (_itemsPrefab.Length == 0) return;
             int r = Random.Range(0, _itemsPrefab.Length);
 
-            float zPos = -0.05f;
+            // ************************************************************
+            // 🌟 1. ส่วนที่เพิ่ม: ตั้งค่าตำแหน่ง (Z และ Y Offset) 🌟
+            // ************************************************************
+            float zPos = -0.05f; // ให้อยู่หน้ากำแพง
             float yOffset = 0f;
 
+            // ถ้าเป็นวัตถุโต้ตอบ ให้ขยับลงมานิดนึงจะได้ดูไม่ลอย
             if (_name == "Statue" || _name == "Box" || _name == "Coffin" ||
                 _name == "Chest" || _name == "Fermenter")
             {
                 yOffset = -0.5f;
             }
 
+            // ใช้ yOffset ที่คำนวณมาในการสร้าง
             GameObject obj = Instantiate(_itemsPrefab[r], new Vector3(x, y + yOffset, zPos), Quaternion.identity);
+            // ************************************************************
 
             obj.transform.parent = parrent;
 
+            // ************************************************************
+            // 🌟 2. ส่วนที่เพิ่ม: ตั้งค่า Sorting Order 🌟
+            // ************************************************************
             if (_name == "Statue" || _name == "Box" || _name == "Fermenter" || _name == "Coffin" || _name == "Chest")
             {
                 SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
                 if (spriteRenderer != null)
                 {
-                    spriteRenderer.sortingOrder = 1;
+                    spriteRenderer.sortingOrder = 1; // วาดทับพื้นและกำแพง
                 }
             }
+            // ************************************************************
 
             Identity identityComponent = obj.GetComponent<Identity>();
             if (identityComponent == null)
@@ -233,14 +231,7 @@ namespace Solution
             mapdata[x, y].positionY = y;
             mapdata[x, y].mapGenerator = this;
 
-            if (_name != collectItem)
-            {
-                mapdata[x, y].Name = _itemsPrefab[r].name;
-            }
-            else
-            {
-                mapdata[x, y].Name = _name;
-            }
+            mapdata[x, y].Name = _name;
 
             obj.name = $"Object_{mapdata[x, y].Name} {x}, {y}";
         }
